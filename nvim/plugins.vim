@@ -7,7 +7,7 @@ Plug 'ap/vim-css-color'
 Plug 'preservim/nerdtree'
 Plug 'szw/vim-maximizer'
 Plug 'mattn/emmet-vim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
 Plug 'sainnhe/edge'
 Plug 'Raimondi/delimitMate'
 Plug 'Yggdroot/indentLine'
@@ -18,24 +18,45 @@ Plug 'tpope/vim-sensible'
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
+Plug 'alexaandru/nvim-lspupdate'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
-" TODO: 
-"   - lsp
-"   - tlescop
+" Telescop
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 call plug#end()
+" ------------------------Telescop-------------------------------
+"  has to be called on VimEnter because of some confilicting
+function TelescopMap()
+    nnoremap <leader>pp <cmd>Telescope find_files<cr>
+    nnoremap <leader>pg <cmd>Telescope live_grep<cr>
+    nnoremap <leader>pb <cmd>Telescope buffers<cr>
+endfunction
+autocmd VimEnter * call TelescopMap()
+" ------------------------snippets-------------------------------
+let g:completion_enable_snippet = 'UltiSnips'
 
 " --------------------INDENTLINE---------------------------------
 let g:indentLine_setColors = 0
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
-
 " ---------------------UNODTREE-----------------------------------
 if !exists('g:undotree_WindowLayout')
     let g:undotree_WindowLayout = 2
 endif
-" ----------------------------------------------------------------
-"
+
+" ---------------------TREESITTER---------------------------------
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true
+  },
+}
+EOF
+
 " -----------------------LSP--------------------------------------
 "
 lua << EOF
@@ -88,17 +109,23 @@ end
 
 -- Use a loop to conveniently both setup defined servers 
 -- and map buffer local keybindings when the language server attaches
-local servers = { "pyright", "tsserver", "html", "vimls" }
+local servers = { "pyright", "tsserver", "html", "vimls" , "solargraph"}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
 EOF
 
 "" Completion
-"let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
+let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
 "" Use completion-nvim in every buffer
+
 autocmd BufEnter * lua require'completion'.on_attach()
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" to call this last we have to put it in a function and call it at vim enter
+function TabMap()
+    inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+    inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+endfunction
+autocmd VimEnter * call TabMap()
 " -------------------- LSP ---------------------------------
