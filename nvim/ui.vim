@@ -1,5 +1,13 @@
+
+" colorshcem
+colorscheme edge
+
+let g:edge_style = 'aura'
+let g:edge_enable_italic = 1
+let g:edge_disable_italic_comment = 1
+
+
 " statusline
-" Statusline {{{2
 
 " Statusline definition {{{3
 set statusline=                                 " Clear
@@ -12,7 +20,7 @@ set statusline+=%3*                             " Color
 set statusline+=%m                              " Modified flag
 set statusline+=%=                              " Left/right separator
 set statusline+=%4*\                            " Color -
-set statusline+=%{g:pluginUpdateStatus}         " Up to date plugins
+"set statusline+=%{g:pluginUpdateStatus}         " Up to date plugins
 set statusline+=\ \                             " --
 set statusline+=%{&filetype}                    " Filetype
 set statusline+=\ \                             " --

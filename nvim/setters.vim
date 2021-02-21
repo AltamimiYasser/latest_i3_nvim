@@ -9,7 +9,7 @@ set mouse=nv
 set clipboard=unnamedplus
 set number
 set relativenumber
-set cursorline
+"set cursorline
 set lazyredraw
 set showmatch
 set splitright
@@ -19,6 +19,9 @@ set hidden
 set scrolloff=8 "start scrolling 8 lines before the end or start
 set signcolumn=yes
 set autochdir
+set completeopt=menuone,noinsert,noselect
+set shortmess+=c
+set cmdheight=2
 
 
 " tab and indent

@@ -1,0 +1,244 @@
+#################################### Setters #################################
+
+set $refresh_i3status killall -SIGUSR1 i3status
+
+# workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+################################### Look ######################################
+
+font pango:System San Francisco Display 10
+set $bg-color 	         #2f343f
+set $inactive-bg-color   #2f343f
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+
+#                       border              background         text                 indicator
+client.focused          #ffffff           $bg-color          $text-color          #00ff00
+client.unfocused        #6B8EB7          $inactive-bg-color $inactive-text-color #00ff00
+client.focused_inactive #6B8EB7          $inactive-bg-color $inactive-text-color #00ff00
+client.urgent           #6B8EB7          $urgent-bg-color   $text-color          #00ff00
+
+# apply gaps
+ gaps inner 2
+ gaps outer 2
+
+# no border
+for_window [class="^.*"] border pixel 2
+new_window 1pixel
+#
+
+#################################### Keybindings #############################
+
+set $mod Mod4
+
+# xkill
+bindsym --release $mod+Escape exec xkill
+
+# got ot urgent work space
+bindsym $mod+a [urgent=latest] focus
+
+# Arcolinux logout
+bindsym control+mod1+l exec --no-startup-id arcolinux-logout
+
+# Use amixer to adjust volume in PulseAudio.
+bindsym XF86AudioRaiseVolume exec --no-startup-id /home/yasser/.config/dunst/sound-control.sh -inc
+bindsym XF86AudioLowerVolume exec --no-startup-id /home/yasser/.config/dunst/sound-control.sh -dec 
+bindsym XF86AudioMute exec --no-startup-id "amixer set Master toggle && if amixer get Master | grep -Fq '[off]'; then volnoti-show -m; else volnoti-show $(amixer get Master | grep -Po '[0-9]+(?=%)' | head -1); fi"
+
+# dropdown terminal
+#bindsym Mod1+grave exec termite --class scratchterm &
+#bindsym F12 [instance="scratchterm"] scratchpad show
+bindsym F12 exec --no-startup-id xfce4-terminal --drop-down; focus
+
+
+
+# lock the screen
+bindsym $mod+Shift+x exec lock-screen.sh 
+# brightness controls
+
+bindsym XF86MonBrightnessUp exec /home/yasser/.config/dunst/brightness-indicator.sh -inc
+bindsym XF86MonBrightnessDown exec /home/yasser/.config/dunst/brightness-indicator.sh -dec
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec termite
+
+# kill focused window
+bindsym $mod+q kill
+
+# show and hide polybar
+bindsym Mod1+comma exec polybar-msg cmd hide
+bindsym Mod1+period exec polybar-msg cmd show
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+x split v
+
+# split in vertical orientation
+bindsym $mod+v split h
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+set $resize-size 1
+mode "resize" {
+
+    bindsym h resize shrink width $resize-size px or $resize-size ppt
+        bindsym k resize grow height $resize-size px or $resize-size ppt
+        bindsym j resize shrink height $resize-size px or $resize-size ppt
+        bindsym l resize grow width $resize-size px or $resize-size ppt
+
+# same bindings, but for the arrow keys
+        bindsym Left resize shrink width $resize-size px or $resize-size ppt
+        bindsym Down resize grow height $resize-size px or $resize-size ppt
+        bindsym Up resize shrink height $resize-size px or $resize-size ppt
+        bindsym Right resize grow width $resize-size px or $resize-size ppt
+
+# back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+bindsym $mod+b exec firefox
+bindsym $mod+n exec notable
+bindsym $mod+p exec nautilus
+################################### Startup Applications #####################
+
+exec --no-startup-id xss-lock --transfer-sleep-lock -- lock-screen.sh --nofork
+exec --no-startup-id nm-applet
+
+# start dmenu
+#bindsym $mod+d exec --no-startup-id dmenu_run -i -nb '#191919' -nf '#F1F1F1' -sb '#F1F1F1' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=20'
+bindsym $mod+d exec --no-startup-id  synapse
+
+# xfce power manager
+exec_always xfce4-power-manager &
+
+# volume control startup using volonti
+exec_always volnoti
+
+# enable picom for transparency
+exec_always dbus-launch picom -b &
+
+# feh
+# exec_always feh --bg-scale --randomize ~/MEGA/wallpapers/wallpapers-feh
+exec_always --no-startup-id /home/yasser/scripts/randomize-wallpaper.sh
+
+# start dropdown terminal
+#exec_always --no-startup-id termite --class scratchterm &
+
+# Megasync & syncithing
+exec_always --no-startup-id megasync
+#exec_always --no-startup-id syncthing-gtk
+#
+############################### acratchpads ###################################
+# dropdown terminal
+#for_window [instance="scratchterm"] floating enable
+#for_window [instance="scratchterm"] move scratchpad
+#for_window [instance="scratchterm"] move absolute position 920 0
+#for_window [instance="scratchterm"] resize set 1400 500
+#for_window [instance="scratchterm"] move scratchpad 
+
+###################################### Bar ####################################
+
+# polybar
+exec_always --no-startup-id /home/yasser/.config/polybar/launch.sh
+
+# bar {
+# 
+#     status_command i3blocks -c /home/yasser/.config/i3blocks/config
+# 
+#         colors {
+#             background $bg-color
+#                 separator #757575
+# 
+# #                  border             background         text
+#                 focused_workspace  $bg-color          $bg-color          $text-color
+#                 inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+#                 urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+#         }
+#     position top
+#    # height 18
+# }
+

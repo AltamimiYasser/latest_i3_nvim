@@ -9,3 +9,7 @@ source ~/.config/nvim/keymap.vim
 
 " ui
 source ~/.config/nvim/ui.vim
+
+" autocm
+source ~/.config/nvim/au.vim
+
