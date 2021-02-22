@@ -11,3 +11,10 @@ augroup webdev
                 \| set shiftwidth=2
 
 augroup end
+
+augroup deleteTrailingWhiteSpace
+    autocmd!
+    autocmd BufWritePre * :%s/\s\+$//e
+augroup END
+
+

@@ -53,7 +53,7 @@ bindsym control+mod1+l exec --no-startup-id arcolinux-logout
 
 # Use amixer to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id /home/yasser/.config/dunst/sound-control.sh -inc
-bindsym XF86AudioLowerVolume exec --no-startup-id /home/yasser/.config/dunst/sound-control.sh -dec 
+bindsym XF86AudioLowerVolume exec --no-startup-id /home/yasser/.config/dunst/sound-control.sh -dec
 bindsym XF86AudioMute exec --no-startup-id "amixer set Master toggle && if amixer get Master | grep -Fq '[off]'; then volnoti-show -m; else volnoti-show $(amixer get Master | grep -Po '[0-9]+(?=%)' | head -1); fi"
 
 # dropdown terminal
@@ -64,7 +64,7 @@ bindsym F12 exec --no-startup-id xfce4-terminal --drop-down; focus
 
 
 # lock the screen
-bindsym $mod+Shift+x exec lock-screen.sh 
+bindsym $mod+Shift+x exec lock-screen.sh
 # brightness controls
 
 bindsym XF86MonBrightnessUp exec /home/yasser/.config/dunst/brightness-indicator.sh -inc
@@ -190,7 +190,9 @@ exec --no-startup-id nm-applet
 
 # start dmenu
 #bindsym $mod+d exec --no-startup-id dmenu_run -i -nb '#191919' -nf '#F1F1F1' -sb '#F1F1F1' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=20'
-bindsym $mod+d exec --no-startup-id  synapse
+#
+# rofi
+bindsym $mod+d exec rofi -show drun
 
 # xfce power manager
 exec_always xfce4-power-manager &
@@ -218,7 +220,7 @@ exec_always --no-startup-id megasync
 #for_window [instance="scratchterm"] move scratchpad
 #for_window [instance="scratchterm"] move absolute position 920 0
 #for_window [instance="scratchterm"] resize set 1400 500
-#for_window [instance="scratchterm"] move scratchpad 
+#for_window [instance="scratchterm"] move scratchpad
 
 ###################################### Bar ####################################
 
@@ -226,13 +228,13 @@ exec_always --no-startup-id megasync
 exec_always --no-startup-id /home/yasser/.config/polybar/launch.sh
 
 # bar {
-# 
+#
 #     status_command i3blocks -c /home/yasser/.config/i3blocks/config
-# 
+#
 #         colors {
 #             background $bg-color
 #                 separator #757575
-# 
+#
 # #                  border             background         text
 #                 focused_workspace  $bg-color          $bg-color          $text-color
 #                 inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color

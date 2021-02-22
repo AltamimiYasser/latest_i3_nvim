@@ -7,12 +7,14 @@ Plug 'ap/vim-css-color'
 Plug 'preservim/nerdtree'
 Plug 'szw/vim-maximizer'
 Plug 'mattn/emmet-vim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} 
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'sainnhe/edge'
 Plug 'Raimondi/delimitMate'
 Plug 'Yggdroot/indentLine'
+Plug 'tpope/vim-surround'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
-" Sensible default 
+" Sensible default
 Plug 'tpope/vim-sensible'
 
 " LSP
@@ -28,6 +30,10 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 call plug#end()
+
+colorscheme  dracula
+let g:dracula_italic = 0
+set termguicolors
 " ------------------------Telescop-------------------------------
 "  has to be called on VimEnter because of some confilicting
 function TelescopMap()
@@ -38,6 +44,8 @@ endfunction
 autocmd VimEnter * call TelescopMap()
 " ------------------------snippets-------------------------------
 let g:completion_enable_snippet = 'UltiSnips'
+let g:UltiSnipsJumpForwardTrigger="<C-b>"
+
 
 " --------------------INDENTLINE---------------------------------
 let g:indentLine_setColors = 0
@@ -107,7 +115,7 @@ local on_attach = function(client, bufnr)
   end
 end
 
--- Use a loop to conveniently both setup defined servers 
+-- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
 local servers = { "pyright", "tsserver", "html", "vimls" , "solargraph"}
 for _, lsp in ipairs(servers) do
@@ -122,10 +130,14 @@ let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
 autocmd BufEnter * lua require'completion'.on_attach()
 
+" completion with tab
+imap <tab> <Plug>(completion_smart_tab)
+imap <s-tab> <Plug>(completion_smart_s_tab)
+
 " to call this last we have to put it in a function and call it at vim enter
 function TabMap()
     inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 endfunction
-autocmd VimEnter * call TabMap()
+"autocmd VimEnter * call TabMap()
 " -------------------- LSP ---------------------------------

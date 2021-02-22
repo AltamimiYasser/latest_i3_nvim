@@ -22,8 +22,13 @@ set autochdir
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 set cmdheight=2
+set spell
+setlocal spell spelllang=en_us
+set spelloptions=camel
 
 
+set termguicolors
+set spellcapcheck=""
 " tab and indent
 set tabstop=4
 set softtabstop=4
@@ -35,7 +40,7 @@ set smartindent
 
 " wrap
 set wrap
-set textwidth=0 " wrpe till the end of screen
+set textwidth=0 " wrap till the end of screen
 set wrapmargin=0
 set colorcolumn=80
 set breakindent
@@ -54,4 +59,5 @@ set nobackup
 set undodir=~/.config/nvim/undodir
 set undofile
 
-
+" lua syntax highlight
+let g:vimsyn_embed= 'lPr'

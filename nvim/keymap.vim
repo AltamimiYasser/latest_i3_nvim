@@ -50,5 +50,7 @@ map <leader>vimrc :vsp new <CR>:edit $MYVIMRC<CR>
 
 nnoremap F :MaximizerToggle<CR>
 
-
-
+" spell checking
+nnoremap <C-space> z=
+inoremap <C-space> <C-x>s
+nnoremap <C-Bslash> zg

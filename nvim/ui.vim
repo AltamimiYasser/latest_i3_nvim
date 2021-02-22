@@ -1,6 +1,6 @@
 
 " colorshcem
-colorscheme edge
+"colorscheme edge
 
 let g:edge_style = 'aura'
 let g:edge_enable_italic = 1
