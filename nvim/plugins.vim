@@ -33,7 +33,7 @@ call plug#end()
 
 colorscheme  dracula
 let g:dracula_italic = 0
-set termguicolors
+ set termguicolors
 " ------------------------Telescope-------------------------------
 "  has to be called on VimEnter because of some conflicting
 function TelescopMap()
@@ -63,6 +63,7 @@ require'nvim-treesitter.configs'.setup {
     enable = true
   },
 }
+
 EOF
 
 " -----------------------LSP--------------------------------------
@@ -115,6 +116,7 @@ local on_attach = function(client, bufnr)
   end
 end
 
+
 -- Use a loop to conveniently both setup defined servers
 -- and map buffer local keybindings when the language server attaches
 local servers = { "pyright", "tsserver", "html", "vimls" , "solargraph"}
@@ -143,11 +145,11 @@ endfunction
 autocmd VimEnter * call TabMap()
 
 " path completion
-let g:completion_chain_complete_list = [
-    \{'complete_items': ['path']},
-    \{'complete_items': ['lsp', 'buffers']},
-    \{'mode': '<c-p>'},
-    \{'mode': '<c-n>'}
-\]
-let g:completion_auto_change_source = 1
+"let g:completion_chain_complete_list = [
+"    \{'complete_items': ['path']},
+"    \{'complete_items': ['lsp', 'buffers']},
+"    \{'mode': '<c-p>'},
+"    \{'mode': '<c-n>'}
+"\]
+"let g:completion_auto_change_source = 1
 " -------------------- LSP ---------------------------------

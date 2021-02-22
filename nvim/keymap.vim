@@ -1,5 +1,18 @@
 let mapleader = " "
 
+" 0 goes to first non-blank character
+map 0 ^
+
+" Move a line of text using ALT+[jk] or Command+[jk] on mac
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+" space w save current file
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :wq<CR>
+
 " shift p pste below the line
 nnoremap P :pu<CR>
 
@@ -20,9 +33,20 @@ nnoremap <leader>u :UndotreeToggle<CR>
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 
-" cn in command line will do tab new
-ca tn tabnew
+" space and combination for tab movement
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+map <leader>t<leader> :tabnext<cr>
 
+" te open a new tab in the current buffer's path
+map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
+
+" Let 'tl' toggle between this and the last accessed tab
+let g:lasttab = 1
+nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
+au TabLeave * let g:lasttab = tabpagenr()
 
 " formating with F7
 nnoremap <F7> gg=G

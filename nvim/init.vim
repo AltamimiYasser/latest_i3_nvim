@@ -16,5 +16,3 @@ source ~/.config/nvim/au.vim
 "
 "" ruby provider
 let g:ruby_host_prog = '/home/yasser/.local/share/gem/ruby/2.7.0/bin/neovim-ruby-host'
-
-" know
