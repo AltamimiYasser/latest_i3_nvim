@@ -70,7 +70,7 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 
 " leader+vimrc open vimrc file from anyfile
-map <leader>vimrc :vsp new <CR>:edit $MYVIMRC<CR>
+map <leader>vimrc :tabnew<CR>:edit $MYVIMRC<CR>
 
 nnoremap F :MaximizerToggle<CR>
 

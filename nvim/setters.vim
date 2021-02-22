@@ -16,7 +16,6 @@ set shortmess+=c
 set cmdheight=2
 set whichwrap+=<,>,h,l
 set mat=2
-set timeoutlen=500
 
 
 " spell check

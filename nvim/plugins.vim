@@ -23,6 +23,8 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'alexaandru/nvim-lspupdate'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 
 " Telescope
 Plug 'nvim-lua/popup.nvim'
@@ -34,6 +36,7 @@ call plug#end()
 colorscheme  dracula
 let g:dracula_italic = 0
  set termguicolors
+
 " ------------------------Telescope-------------------------------
 "  has to be called on VimEnter because of some conflicting
 function TelescopMap()
@@ -42,8 +45,21 @@ function TelescopMap()
     nnoremap <leader>pb <cmd>Telescope buffers<cr>
 endfunction
 autocmd VimEnter * call TelescopMap()
+" -------------------------vsnip--------------------------------
+" Expand
+imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+
+" Expand or jump
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+
+" Jump forward or backward
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 " ------------------------snippets-------------------------------
-let g:completion_enable_snippet = 'UltiSnips'
 let g:UltiSnipsJumpForwardTrigger="<C-b>"
 
 
@@ -125,9 +141,10 @@ for _, lsp in ipairs(servers) do
 end
 EOF
 
+
 "" Completion
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
-
+let g:completion_enable_snippet = 'UltiSnips'
 "" Use completion-nvim in every buffer
 
 autocmd BufEnter * lua require'completion'.on_attach()
@@ -145,11 +162,11 @@ endfunction
 autocmd VimEnter * call TabMap()
 
 " path completion
-"let g:completion_chain_complete_list = [
-"    \{'complete_items': ['path']},
-"    \{'complete_items': ['lsp', 'buffers']},
-"    \{'mode': '<c-p>'},
-"    \{'mode': '<c-n>'}
-"\]
-"let g:completion_auto_change_source = 1
+let g:completion_chain_complete_list = [
+    \{'complete_items': ['path']},
+    \{'complete_items': ['lsp', 'buffers', 'snippet']},
+    \{'mode': '<c-p>'},
+    \{'mode': '<c-n>'}
+\]
+let g:completion_auto_change_source = 1
 " -------------------- LSP ---------------------------------
