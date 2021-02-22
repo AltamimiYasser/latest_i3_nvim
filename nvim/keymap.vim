@@ -54,3 +54,6 @@ nnoremap F :MaximizerToggle<CR>
 nnoremap <C-space> z=
 inoremap <C-space> <C-x>s
 nnoremap <C-Bslash> zg
+
+" dictionary
+inoremap <F10> <C-X><C-K>

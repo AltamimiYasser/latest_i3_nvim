@@ -24,7 +24,7 @@ Plug 'alexaandru/nvim-lspupdate'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-" Telescop
+" Telescope
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -34,8 +34,8 @@ call plug#end()
 colorscheme  dracula
 let g:dracula_italic = 0
 set termguicolors
-" ------------------------Telescop-------------------------------
-"  has to be called on VimEnter because of some confilicting
+" ------------------------Telescope-------------------------------
+"  has to be called on VimEnter because of some conflicting
 function TelescopMap()
     nnoremap <leader>pp <cmd>Telescope find_files<cr>
     nnoremap <leader>pg <cmd>Telescope live_grep<cr>
@@ -130,6 +130,7 @@ let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
 autocmd BufEnter * lua require'completion'.on_attach()
 
+" completion
 " completion with tab
 imap <tab> <Plug>(completion_smart_tab)
 imap <s-tab> <Plug>(completion_smart_s_tab)
@@ -139,5 +140,14 @@ function TabMap()
     inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
     inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 endfunction
-"autocmd VimEnter * call TabMap()
+autocmd VimEnter * call TabMap()
+
+" path completion
+let g:completion_chain_complete_list = [
+    \{'complete_items': ['path']},
+    \{'complete_items': ['lsp', 'buffers']},
+    \{'mode': '<c-p>'},
+    \{'mode': '<c-n>'}
+\]
+let g:completion_auto_change_source = 1
 " -------------------- LSP ---------------------------------

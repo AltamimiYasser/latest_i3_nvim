@@ -9,7 +9,6 @@ set mouse=nv
 set clipboard=unnamedplus
 set number
 set relativenumber
-"set cursorline
 set lazyredraw
 set showmatch
 set splitright
@@ -22,13 +21,20 @@ set autochdir
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 set cmdheight=2
+
+" spell check
 set spell
 setlocal spell spelllang=en_us
 set spelloptions=camel
+"set thesaurus+=/home/yasser/.local/share/dictionary/thesaurii.txt
+set dictionary+=/user/share/dict/words
+set complete+=k
+" acknowledgment
 
-
+" ui
 set termguicolors
 set spellcapcheck=""
+
 " tab and indent
 set tabstop=4
 set softtabstop=4
