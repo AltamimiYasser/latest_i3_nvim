@@ -81,3 +81,6 @@ nnoremap <C-Bslash> zg
 
 " dictionary
 inoremap <F10> <C-X><C-K>
+
+" delete all in a file
+nnoremap <Leader>da gg0vG$d

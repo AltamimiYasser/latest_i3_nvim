@@ -30,8 +30,9 @@ client.focused_inactive #6B8EB7          $inactive-bg-color $inactive-text-color
 client.urgent           #6B8EB7          $urgent-bg-color   $text-color          #00ff00
 
 # apply gaps
- gaps inner 2
- gaps outer 2
+#
+#gaps inner 2
+#gaps outer 2
 
 # no border
 for_window [class="^.*"] border pixel 2
@@ -80,8 +81,8 @@ bindsym $mod+Return exec terminator
 bindsym $mod+q kill
 
 # show and hide polybar
-bindsym Mod1+comma exec polybar-msg cmd hide
-bindsym Mod1+period exec polybar-msg cmd show
+#bindsym Mod1+comma exec polybar-msg cmd hide
+#bindsym Mod1+period exec polybar-msg cmd show
 
 # change focus
 bindsym $mod+h focus left
@@ -214,6 +215,9 @@ exec_always --no-startup-id /home/yasser/scripts/randomize-wallpaper.sh
 exec_always --no-startup-id megasync
 #exec_always --no-startup-id syncthing-gtk
 #
+########### floating windows #################################
+for_window [class="Notable"]floating enable
+#
 ############################### acratchpads ###################################
 # dropdown terminal
 #for_window [instance="scratchterm"] floating enable
@@ -225,22 +229,19 @@ exec_always --no-startup-id megasync
 ###################################### Bar ####################################
 
 # polybar
-exec_always --no-startup-id /home/yasser/.config/polybar/launch.sh
+#exec_always --no-startup-id /home/yasser/.config/polybar/launch.sh
 
-# bar {
-#
-#     status_command i3blocks -c /home/yasser/.config/i3blocks/config
-#
-#         colors {
-#             background $bg-color
-#                 separator #757575
-#
-# #                  border             background         text
-#                 focused_workspace  $bg-color          $bg-color          $text-color
-#                 inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-#                 urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-#         }
-#     position top
-#    # height 18
-# }
+bar {
+    position top
+    status_command /usr/bin/bumblebee-status \
+        -m todo pomodoro spacer progress spacer network_traffic arch-update spacer cpu2 sensors spacer memory disk spacer spacer spacer battery layout_xkb date time system\
+        -p time.format="%-I:%-M %p" date.format="%a, %b %d" \
+        memory.format='{used}' \
+        battery.compact-devices=true  \
+        cpu2.layout=cpu2.cpuload cpu2.temp  \
+        pomodoro.notify=‘notify-send ‘Time up!’’  \
+        progress.placeholder="Progress"  \
+        todo.file="/home/yasser/MEGA/todo.txt"  \
+        -t dracula-powerline
+}
 

@@ -384,6 +384,6 @@ set to (echo $argv[2])
     paleofetch
     end
 
-    export PYTHONSTARTUP="$HOME/.pythonrc"
-    export EDITOR=/bin/nvim
+    set -x PYTHONSTARTUP "$HOME/.pythonrc"
+    set -x EDITOR /bin/nvim
     starship init fish | source

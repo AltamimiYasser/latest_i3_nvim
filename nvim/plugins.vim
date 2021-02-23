@@ -13,6 +13,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-surround'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'dag/vim-fish'
 
 " Sensible default
 Plug 'tpope/vim-sensible'
