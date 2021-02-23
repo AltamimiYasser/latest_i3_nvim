@@ -34,14 +34,14 @@ nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 
 " space and combination for tab movement
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-map <leader>t<leader> :tabnext<cr>
+nnoremap <leader>tn :tabnew<cr>
+nnoremap <leader>to :tabonly<cr>
+nnoremap <leader>tc :tabclose<cr>
+nnoremap <leader>tm :tabmove
+nnoremap <leader>t<leader> :tabnext<cr>
 
 " te open a new tab in the current buffer's path
-map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
+nnoremap <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -70,7 +70,7 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 
 " leader+vimrc open vimrc file from anyfile
-map <leader>vimrc :tabnew<CR>:edit $MYVIMRC<CR>
+nnoremap <leader>vimrc :tabnew<CR>:edit $MYVIMRC<CR>
 
 nnoremap F :MaximizerToggle<CR>
 

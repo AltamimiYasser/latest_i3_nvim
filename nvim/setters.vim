@@ -72,5 +72,7 @@ set nowritebackup
 set undodir=~/.config/nvim/undodir
 set undofile
 
+set notimeout
+
 " lua syntax highlight
 let g:vimsyn_embed= 'lPr'
