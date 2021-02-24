@@ -1,0 +1,25 @@
+[icons]
+# font awesome
+firefox = ""
+Alacritty = ""
+Termite = ""
+Gpick = ""
+Terminator = ""
+Notable = ""
+Emacs = ""
+"Code - Insiders" = ""
+# smile emoji
+MyNiceProgram = "😛"
+
+[aliases]
+TelegramDesktop = "Telegram"
+"Org.gnome.Nautilus" = "Nautilus"
+
+[general]
+separator = " "
+default_icon = ""
+
+[options]
+remove_duplicates = true
+use_instance = true
+no_names = true

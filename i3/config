@@ -215,7 +215,7 @@ exec_always dbus-launch picom -b &
 exec_always --no-startup-id /home/yasser/scripts/randomize-wallpaper.sh
 
 # change name of work space on the fly
-exec_always --no-startup-id i3wsr --icons awesome
+exec_always --no-startup-id i3wsr --config ~/.config/i3wsr.toml
 
 # start dropdown terminal
 #exec_always --no-startup-id termite --class scratchterm &
