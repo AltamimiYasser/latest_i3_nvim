@@ -125,32 +125,38 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
+# Make the currently focused window a scratchpad
+bindsym $mod+plus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
 # switch to workspace
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
-bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -208,6 +214,9 @@ exec_always dbus-launch picom -b &
 # exec_always feh --bg-scale --randomize ~/MEGA/wallpapers/wallpapers-feh
 exec_always --no-startup-id /home/yasser/scripts/randomize-wallpaper.sh
 
+# change name of work space on the fly
+exec_always --no-startup-id i3wsr --icons awesome
+
 # start dropdown terminal
 #exec_always --no-startup-id termite --class scratchterm &
 
@@ -234,13 +243,13 @@ for_window [class="Notable"]floating enable
 bar {
     position top
     status_command /usr/bin/bumblebee-status \
-        -m todo pomodoro spacer progress spacer network_traffic arch-update spacer cpu2 sensors spacer memory disk spacer spacer spacer battery layout_xkb date time system\
+        -m pomodoro network_traffic arch-update spacer cpu2 sensors spacer memory disk  spacer layout_xkb battery date time system\
         -p time.format="%-I:%-M %p" date.format="%a, %b %d" \
+        disk.format="{left}"  \
         memory.format='{used}' \
         battery.compact-devices=true  \
         cpu2.layout=cpu2.cpuload cpu2.temp  \
         pomodoro.notify=‘notify-send ‘Time up!’’  \
-        progress.placeholder="Progress"  \
         todo.file="/home/yasser/MEGA/todo.txt"  \
         -t dracula-powerline
 }

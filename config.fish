@@ -374,6 +374,7 @@ set to (echo $argv[2])
     alias update-mirror="sudo reflector --verbose --latest 200 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
     alias cat="bat"
     alias svim="nvim -u ~/.SpaceVim/vimrc"
+    alias tree="tree -C -a"
 
 # vi mode
     fish_vi_key_bindings
@@ -387,3 +388,5 @@ set to (echo $argv[2])
     set -x PYTHONSTARTUP "$HOME/.pythonrc"
     set -x EDITOR /bin/nvim
     starship init fish | source
+
+
