@@ -188,8 +188,9 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bindsym $mod+b exec firefox
-bindsym $mod+n exec notable
+bindsym $mod+n exec noteable.AppImage
 bindsym $mod+p exec nautilus
+bindsym $mod+z exec emacs
 ################################### Startup Applications #####################
 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- lock-screen.sh --nofork
@@ -243,7 +244,7 @@ for_window [class="Notable"]floating enable
 bar {
     position top
     status_command /usr/bin/bumblebee-status \
-        -m pomodoro network_traffic arch-update spacer cpu2 sensors spacer memory disk  spacer layout_xkb battery date time system\
+        -m pomodoro network_traffic arch-update spacer cpu2 sensors spacer memory disk  spacer layout_xkb battery date time \
         -p time.format="%-I:%-M %p" date.format="%a, %b %d" \
         disk.format="{left}"  \
         memory.format='{used}' \

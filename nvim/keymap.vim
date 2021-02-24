@@ -14,11 +14,11 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>q :wq<CR>
 
 " shift p pste below the line
-nnoremap P :pu<CR>
+nnoremap P :pu<CR> "
 
 
 " toggle hlsearch with enter
-nnoremap <CR> :noh<CR>
+nnoremap <CR> :noh<CR> "
 
 " don't jump fake lines
 nnoremap j gj
