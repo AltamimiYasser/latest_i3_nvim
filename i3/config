@@ -227,6 +227,7 @@ exec_always --no-startup-id megasync
 #
 ########### floating windows #################################
 for_window [class="Notable"]floating enable
+for_window [class="Baobab"] floating enable
 #
 ############################### acratchpads ###################################
 # dropdown terminal
@@ -244,8 +245,8 @@ for_window [class="Notable"]floating enable
 bar {
     position top
     status_command /usr/bin/bumblebee-status \
-        -m pomodoro network_traffic arch-update spacer cpu2 sensors spacer memory disk  spacer layout_xkb battery date time \
-        -p time.format="%-I:%-M %p" date.format="%a, %b %d" \
+        -m pomodoro network_traffic arch-update spacer cpu2 sensors spacer memory disk  spacer layout_xkb battery datetime \
+        -p datetime.format="%a, %d %b %I:%M %p" \
         disk.format="{left}"  \
         memory.format='{used}' \
         battery.compact-devices=true  \

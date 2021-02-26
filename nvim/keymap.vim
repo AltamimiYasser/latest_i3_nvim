@@ -29,6 +29,7 @@ vnoremap ii <Esc><Esc>
 
 nnoremap <leader>u :UndotreeToggle<CR>
 
+
 " ctrl + arrow keys to move between tabs
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
