@@ -246,7 +246,7 @@ for_window [class="Baobab"] floating enable
 bar {
     position top
     status_command /usr/bin/bumblebee-status \
-        -m  todo_org pomodoro network_traffic arch-update spacer cpu2 sensors spacer memory disk  spacer layout_xkb battery datetime\
+        -m  todo_org network_traffic arch-update spacer cpu2 sensors spacer memory disk  spacer layout_xkb battery datetime\
         -p datetime.format="%a, %d %b %I:%M %p" \
         disk.format="{left}"  \
         memory.format='{used}' \
