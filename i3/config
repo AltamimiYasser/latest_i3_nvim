@@ -191,7 +191,7 @@ bindsym $mod+b exec firefox
 bindsym $mod+n exec noteable.AppImage
 bindsym $mod+p exec nautilus
 bindsym $mod+z exec emacs
-bindsym F1 emacsclient -ne "(make-capture-frame)"
+bindsym F1 exec emacsclient -ne "(make-capture-frame)"
 ################################### Startup Applications #####################
 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- lock-screen.sh --nofork
