@@ -191,6 +191,7 @@ bindsym $mod+b exec firefox
 bindsym $mod+n exec noteable.AppImage
 bindsym $mod+p exec nautilus
 bindsym $mod+z exec emacs
+bindsym F1 emacsclient -ne "(make-capture-frame)"
 ################################### Startup Applications #####################
 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- lock-screen.sh --nofork
@@ -223,7 +224,7 @@ exec_always --no-startup-id i3wsr --config ~/.config/i3wsr.toml
 
 # Megasync & syncithing
 exec_always --no-startup-id megasync
-#exec_always --no-startup-id syncthing-gtk
+exec_always --no-startup-id syncthing-gtk
 #
 ########### floating windows #################################
 for_window [class="Notable"]floating enable
@@ -245,14 +246,13 @@ for_window [class="Baobab"] floating enable
 bar {
     position top
     status_command /usr/bin/bumblebee-status \
-        -m pomodoro network_traffic arch-update spacer cpu2 sensors spacer memory disk  spacer layout_xkb battery datetime \
+        -m  todo_org pomodoro network_traffic arch-update spacer cpu2 sensors spacer memory disk  spacer layout_xkb battery datetime\
         -p datetime.format="%a, %d %b %I:%M %p" \
         disk.format="{left}"  \
         memory.format='{used}' \
         battery.compact-devices=true  \
         cpu2.layout=cpu2.cpuload cpu2.temp  \
         pomodoro.notify=‘notify-send ‘Time up!’’  \
-        todo.file="/home/yasser/MEGA/todo.txt"  \
+        todo_org.file="~/MEGA/org/todo.org"  \
         -t dracula-powerline
 }
-
