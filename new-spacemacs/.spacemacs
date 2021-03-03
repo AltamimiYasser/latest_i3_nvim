@@ -46,6 +46,7 @@ This function should only modify configuration layer settings."
                       )
 
 
+
      ;; better-defaults
      emacs-lisp
      git
@@ -82,11 +83,78 @@ This function should only modify configuration layer settings."
                       version-control-diff-side 'left
                       version-control-global-margin t)
      (treemacs :variables
-               treemacs-use-git-mode 'deferred)
+               treemacs-use-git-mode 'deferred
+               treemacs-use-all-the-icons-theme t)
+
 
      (ranger :variables
              ranger-override-dired 'ranger
-             ranger-show-preview t))
+             ranger-show-preview t)
+
+     ;; spacemacs layers added by me
+     helpful ;;better help
+     ibuffer ;; group buffers together
+     unicode-fonts ;;
+     emoji
+     dtrt-indent ;;change indentation based on mode
+     spacemacs-defaults ;;better defaults for built-in packages
+     spacemacs-editing
+     spacemacs-editing-visual
+     spacemacs-evil
+     spacemacs-org
+     spacemacs-visual
+
+     ;;Programming
+     (html :variables
+           css-enable-lsp t
+           html-enable-lsp t
+           web-fmt-tool 'prettier)
+
+     prettier
+
+     (json :variables
+           json-fmt-tool 'prettier)
+
+     (shell-scripts :variables
+                    shell-scripts-backend 'lsp)
+
+     (vimscript :variables
+                vimscript-backend 'lsp)
+
+     (sql :variables
+          sql-capitalize-keywords t)
+
+     ruby-on-rails
+
+     (javascript :variables
+                 js2-mode-show-strict-warning nil
+                 javascript-import-tool 'import-js
+                 javascript-fmt-tool 'prettier
+                 javascript-fmt-on-save t
+                 javascript-backend 'lsp
+                 js2-basic-offset 2
+                 javascript-repl `nodejs)
+
+     (c-c++ :variables
+            c-c++-backend 'lsp-clangd)
+     (lua :variables
+          lua-backend 'lua-mode)
+
+     (python :variables
+             python-backend 'lsp python-lsp-server 'mspyls
+             python-format-on-save t)
+     (ruby :variables
+           ruby-prettier-on-save t)
+
+     dash
+     themes-megapack
+     dap
+     debug
+     systemd
+     evil-snipe
+
+
+     )
 
    ;; List of additional packages that will be installed without being wrapped
    ;; in a layer (generally the packages are installed only and should still be
@@ -571,7 +639,7 @@ before packages are loaded."
     "Open config.el."
     (interactive)
     (find-file "~/.spacemacs"))
-  (spacemacs/set-leader-keys "od" 'open-config-file)
+  (spacemacs/set-leader-keys "oe" 'open-config-file)
 
   ;; undo history
   (setq undo-tree-auto-save-history t)
@@ -639,11 +707,9 @@ before packages are loaded."
         org-ellipsis " ▾"
         org-pretty-entities t)
 
-  ;; autosave only org-mode
-  (add-hook 'auto-save-hook 'org-save-all-org-buffers)
 
   ;; autosave in org mode
-  (add-hook 'auto-save-hook 'org-save-all-org-buffers)
+  ;; (add-hook 'auto-save-hook 'org-save-all-org-buffers)
 
   ;; capture templates
 
@@ -666,29 +732,7 @@ before packages are loaded."
   (add-hook 'org-mode-hook 'org-appear-mode)
 
   ;; capture from outside emacs
-
-  (defadvice org-capture-finalize
-      (after delete-capture-frame activate)
-    "Advise capture-finalize to close the frame"
-    (if (equal "capture" (frame-parameter nil 'name))
-        (delete-frame)))
-
-  (defadvice org-capture-destroy
-      (after delete-capture-frame activate)
-    "Advise capture-destroy to close the frame"
-    (if (equal "capture" (frame-parameter nil 'name))
-        (delete-frame)))
-
-  (use-package noflet
-    :ensure t )
-  (defun make-capture-frame ()
-    "Create a new frame and run org-capture."
-    (interactive)
-    (make-frame '((name . "capture")))
-    (select-frame-by-name "capture")
-    (delete-other-windows)
-    (noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
-      (org-capture)))
+  ;; TODO
 
   ;; other functions with their keymapping
   ;; archive shortcut
@@ -760,6 +804,10 @@ before packages are loaded."
   (setq magit-repository-directories
         '(("/home/yasser/MEGA/dotFiles/" . 4) ("/home/yasser/.doom.d/" . 4)))
 
+  ;; auto change indentation based on mode
+  (add-hook 'prog-mode-hook #'(lambda ()
+                                (dtrt-indent-mode)
+                                (dtrt-indent-adapt)))
 
   ;;;;;;;;;;;;;;;;;;;;;;; KEYMAPING ;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -786,6 +834,9 @@ before packages are loaded."
     (save-excursion
       (indent-region (point-min) (point-max) nil)))
   (global-set-key [f7] 'formate-whole-buffer)
+
+  ;; change server port for httpd
+  (setq httpd-port 8070)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -795,20 +846,20 @@ before packages are loaded."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-  (custom-set-variables
-   ;; custom-set-variables was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   '(evil-want-Y-yank-to-eol nil)
-   '(package-selected-packages
-     '(flyspell-popup ranger xterm-color vterm terminal-here shell-pop multi-term git-gutter-fringe+ fringe-helper git-gutter+ flyspell-correct-helm flyspell-correct eshell-z eshell-prompt-extras esh-help browse-at-remote auto-dictionary vmd-mode orgit org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink org-brain mmm-mode markdown-toc htmlize helm-org-rifle gnuplot gh-md evil-org lsp-ui lsp-treemacs lsp-origami origami helm-lsp lsp-mode flycheck-pos-tip treemacs-magit smeargle magit-svn magit-section magit-gitflow magit-popup helm-gitignore helm-git-grep gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link forge markdown-mode magit ghub closql emacsql-sqlite emacsql treepy git-commit with-editor transient yasnippet-snippets helm-company helm-c-yasnippet fuzzy company-statistics company-quickhelp pos-tip company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line move-text macrostep lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump dotenv-mode dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
-  (custom-set-faces
-   ;; custom-set-faces was added by Custom.
-   ;; If you edit it by hand, you could mess it up, so be careful.
-   ;; Your init file should contain only one such instance.
-   ;; If there is more than one, they won't work right.
-   )
-  )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol nil)
+ '(package-selected-packages
+   '(zenburn-theme zen-and-art-theme zeal-at-point yapfify white-sand-theme underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme tao-theme tangotango-theme tango-plus-theme tango-2-theme systemd sunny-day-theme sublime-themes subatomic256-theme subatomic-theme sphinx-doc spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme seti-theme reverse-theme rebecca-theme realgud test-simple loc-changes load-relative railscasts-theme pytest pyenv-mode py-isort purple-haze-theme professional-theme poetry planet-theme pippel pipenv pyvenv pip-requirements phoenix-dark-pink-theme phoenix-dark-mono-theme organic-green-theme omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme mustang-theme monokai-theme monochrome-theme molokai-theme moe-theme modus-vivendi-theme modus-operandi-theme minimal-theme material-theme majapahit-theme madhat2r-theme lush-theme lsp-python-ms lsp-pyright live-py-mode light-soap-theme kaolin-themes jbeans-theme jazz-theme ir-black-theme inkpot-theme importmagic epc ctable concurrent heroku-theme hemisu-theme helm-rtags helm-pydoc helm-dash dash-docs hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-c-style gandalf-theme flycheck-ycmd flycheck-rtags flatui-theme flatland-theme farmhouse-theme eziam-theme exotica-theme evil-snipe espresso-theme dracula-theme doom-themes django-theme disaster darktooth-theme darkokai-theme darkmine-theme darkburn-theme dap-mode bui dakrone-theme cython-mode cyberpunk-theme cpp-auto-include company-ycmd ycmd request-deferred deferred company-rtags rtags company-lua lua-mode company-c-headers company-anaconda color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme chocolate-theme autothemer cherry-blossom-theme ccls busybee-theme bubbleberry-theme blacken birds-of-paradise-plus-theme badwolf-theme apropospriate-theme anti-zenburn-theme anaconda-mode pythonic ample-zen-theme ample-theme alect-themes afternoon-theme sqlup-mode sql-indent seeing-is-believing rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocopfmt rubocop rspec-mode robe rbenv projectile-rails rake inflections npm-mode nodejs-repl minitest livid-mode skewer-mode js2-refactor multiple-cursors js2-mode js-doc feature-mode chruby bundler inf-ruby vimrc-mode dactyl-mode insert-shebang flycheck-bashate fish-mode company-shell json-navigator hierarchy json-mode json-snatcher json-reformat web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js impatient-mode simple-httpd helm-css-scss haml-mode emmet-mode company-web web-completion-data dtrt-indent unicode-fonts ucs-utils font-utils selectric-mode persistent-soft pcache emojify emoji-cheat-sheet-plus company-emoji outshine outorg treemacs-all-the-icons ibuffer-projectile helpful elisp-refs flyspell-popup ranger xterm-color vterm terminal-here shell-pop multi-term git-gutter-fringe+ fringe-helper git-gutter+ flyspell-correct-helm flyspell-correct eshell-z eshell-prompt-extras esh-help browse-at-remote auto-dictionary vmd-mode orgit org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink org-brain mmm-mode markdown-toc htmlize helm-org-rifle gnuplot gh-md evil-org lsp-ui lsp-treemacs lsp-origami origami helm-lsp lsp-mode flycheck-pos-tip treemacs-magit smeargle magit-svn magit-section magit-gitflow magit-popup helm-gitignore helm-git-grep gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link forge markdown-mode magit ghub closql emacsql-sqlite emacsql treepy git-commit with-editor transient yasnippet-snippets helm-company helm-c-yasnippet fuzzy company-statistics company-quickhelp pos-tip company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line move-text macrostep lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump dotenv-mode dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)
 
                                         ; LocalWords:  KEYMAPING
