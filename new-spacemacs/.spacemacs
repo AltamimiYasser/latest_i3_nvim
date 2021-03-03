@@ -1,10 +1,8 @@
 ;; -*- mode: emacs-lisp; lexical-binding: t -*-
-;; This file is loaded by Spacemacs at startup.
-;; It must be stored in your home directory.
-
-(defun dotspacemacs/layers ()
-  "Layer configuration:
+;; This file is loaded by Spacemacsspacemacs/layers ()
+"Layer configuration:
 This function should only modify configuration layer settings."
+(defun dotspacemacs/layers ()
   (setq-default
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
@@ -40,12 +38,12 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
 
      (auto-completion :variables
-                     auto-completion-minimum-prefix-length 1
-                     auto-completion-idle-delay 0.0
-                     auto-completion-enable-snippets-in-popup t
-                     auto-completion-enable-help-tooltip t
-                     auto-completion-enable-sort-by-usage t
-                     )
+                      auto-completion-minimum-prefix-length 1
+                      auto-completion-idle-delay 0.0
+                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-enable-help-tooltip t
+                      auto-completion-enable-sort-by-usage t
+                      )
 
 
      ;; better-defaults
@@ -98,10 +96,8 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(
-                                      (org-appear :location (recipe :fetcher github :repo "awth13/org-appear"))
-                                                 noflet
-                                                 )
+   dotspacemacs-additional-packages '((org-appear :location (recipe :fetcher github :repo "awth13/org-appear"))
+                                      noflet)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -223,6 +219,7 @@ It should only modify the values of Spacemacs settings."
    ;; pair of numbers, e.g. `(recents-by-project . (7 .  5))', where the first
    ;; number is the project limit and the second the limit on the recent files
    ;; within a project.
+   ;; TODO: put todo in the list
    dotspacemacs-startup-lists '((recents . 5)
                                 (projects . 7))
 
@@ -239,11 +236,11 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil, *scratch* buffer will be persistent. Things you write down in
    ;; *scratch* buffer will be saved and restored automatically.
-   dotspacemacs-scratch-buffer-persistent nil
+   dotspacemacs-scratch-buffer-persistent t
 
    ;; If non-nil, `kill-buffer' on *scratch* buffer
    ;; will bury it instead of killing.
-   dotspacemacs-scratch-buffer-unkillable nil
+   dotspacemacs-scratch-buffer-unkillable t
 
    ;; Initial message in the scratch buffer, such as "Welcome to Spacemacs!"
    ;; (default nil)
@@ -252,6 +249,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
+   ;;TODO: Dracula
    dotspacemacs-themes '(spacemacs-dark
                          spacemacs-light)
 
@@ -262,7 +260,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(doom)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -272,7 +270,7 @@ It should only modify the values of Spacemacs settings."
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 10.0
+                               :size 12.0
                                :weight normal
                                :width normal)
 
@@ -344,7 +342,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
-   dotspacemacs-which-key-delay 0.4
+   dotspacemacs-which-key-delay 0.2
 
    ;; Which-key frame position. Possible values are `right', `bottom' and
    ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
@@ -426,7 +424,7 @@ It should only modify the values of Spacemacs settings."
    ;;   :size-limit-kb 1000)
    ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers 'visual
 
    ;; Code folding method. Possible values are `evil', `origami' and `vimish'.
    ;; (default 'evil)
@@ -497,7 +495,7 @@ It should only modify the values of Spacemacs settings."
    ;; `trailing' to delete only the whitespace at end of lines, `changed' to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
+   dotspacemacs-whitespace-cleanup 'trailing
 
    ;; If non nil activate `clean-aindent-mode' which tries to correct
    ;; virtual indentation of simple modes. This can interfer with mode specific
@@ -520,7 +518,7 @@ It should only modify the values of Spacemacs settings."
    ;; Run `spacemacs/prettify-org-buffer' when
    ;; visiting README.org files of Spacemacs.
    ;; (default nil)
-   dotspacemacs-pretty-docs nil
+   dotspacemacs-pretty-docs t
 
    ;; If nil the home buffer shows the full path of agenda items
    ;; and todos. If non nil only the file name is shown.
@@ -559,7 +557,7 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
-  ;iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii; General ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ii
+                                        ;iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii; General ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ii
 
   ;; user specific prefix after leader <SPC>
   (spacemacs/declare-prefix "o" "custom")
@@ -568,29 +566,48 @@ before packages are loaded."
   (setq user-full-name "Yasser Tamimi"
         user-mail-address "altamimiy89@gmail.com")
 
-    ;; open .spacemacs file with space o d
+  ;; open .spacemacs file with space o d
   (defun open-config-file ()
     "Open config.el."
     (interactive)
     (find-file "~/.spacemacs"))
   (spacemacs/set-leader-keys "od" 'open-config-file)
 
-  ;; ;; relative line number
-  ;; (setq display-line-numbers-type 'visual)
+  ;; undo history
+  (setq undo-tree-auto-save-history t)
+  ;; default in spacemacs is 80000
+  (setq undo-limit 800000)
 
-  ;; ;; send deleted files to trash
-  ;; (setq-default delete-by-moving-to-trash t)
+  ;; default in spacemacs is 120000
+  (setq undo-strong-limit 12000000)
 
-  ;; ;; undo after insert mode doesn't take all the insert mode as one block
-  ;; (setq evil-want-fine-undo t)
+  ;; default in spacemacs is 12000000
+  (setq undo-outer-limit 120000000)
 
-  ;; ;; display time and date in mode-line
-  ;; (setq display-time-day-and-date t)
-  ;; (display-time-mode 1)
-  ;; (setq display-time t)
+  ;; send deleted files to trash
+  (setq-default delete-by-moving-to-trash t)
+
+  ;; undo after insert mode doesn't take all the insert mode as one block
+  (setq evil-want-fine-undo t)
+
+  ;; display time and date in mode-line
+  (setq display-time-day-and-date t)
+  (display-time-mode 1)
+  (setq display-time t)
+
+  ;; windows
+  (setq evil-split-window-right t
+        evil-split-window-below t)
 
   ;; projectile search paths
-  (setq projectile-project-search-path '("/home/yasser/MEGA/"))
+  (setq projectile-project-search-path '("/home/yasser/MEGA/dotFiles"
+                                         "/home/yasser/MEGA/Programming"
+                                         "/home/yasser/MEGA/org"))
+
+  ;; display battery
+  (unless (equal "Battery status not available"
+                 (battery))
+    (display-battery-mode 1))
 
 
 
@@ -602,139 +619,139 @@ before packages are loaded."
   ;;;;;;;;;;;;;;;;;;;;; START ORG CONFGIG ;;;;;;;;;;;;;;;;;;;;;
 
 
-    ;; .... setup
-    (setq org-agenda-files "/home/yasser/MEGA/org/")
-    (setq org-persp-startup-org-file "/home/yasser/MEGA/org/todo.org")
-    (setq org-directory "/home/yasser/MEGA/org/"
-          org-default-notes-file "/home/yasser/MEGA/org/notes.org"
-          org-archive-location "/home/yasser/MEGA/org/archive/Archive_%s::"
-          org-hide-emphasis-markers t
-          org-log-done 'time
-          org-superstar-headline-bullets-list '("◉" "○" "✸")
-          )
+  ;; .... setup
+  (setq org-agenda-files "/home/yasser/MEGA/org/")
+  (setq org-persp-startup-org-file "/home/yasser/MEGA/org/todo.org")
+  (setq org-directory "/home/yasser/MEGA/org/"
+        org-default-notes-file "/home/yasser/MEGA/org/notes.org"
+        org-archive-location "/home/yasser/MEGA/org/archive/Archive_%s::"
+        org-hide-emphasis-markers t
+        org-log-done 'time
+        org-superstar-headline-bullets-list '("◉" "○" "✸")
+        )
 
-    ;; look
-    (setq org-want-todo-bindings t)
-    (setq org-src-fontify-natively t
-          org-src-tab-acts-natively t
-          org-confirm-babel-evaluate nil
-          org-edit-src-content-indentation 0
-          org-ellipsis " ▾"
-          org-pretty-entities t)
+  ;; look
+  (setq org-want-todo-bindings t)
+  (setq org-src-fontify-natively t
+        org-src-tab-acts-natively t
+        org-confirm-babel-evaluate nil
+        org-edit-src-content-indentation 0
+        org-ellipsis " ▾"
+        org-pretty-entities t)
 
-    ;; autosave only org-mode
-    (add-hook 'auto-save-hook 'org-save-all-org-buffers)
+  ;; autosave only org-mode
+  (add-hook 'auto-save-hook 'org-save-all-org-buffers)
 
-    ;; autosave in org mode
-    (add-hook 'auto-save-hook 'org-save-all-org-buffers)
+  ;; autosave in org mode
+  (add-hook 'auto-save-hook 'org-save-all-org-buffers)
 
-    ;; capture templates
+  ;; capture templates
 
-    (setq org-capture-templates
-          '(("t" "Personal todo" entry
-             (file+headline "/home/yasser/MEGA/org/todo.org" "Tasks:")
-             "* TODO %?\n%i" :append t)
-            ("n" "Personal notes" entry
-             (file+headline "/home/yasser/MEGA/org/notes.org" "Notes:")
-             "*  %?\n%i" :append t)))
-
-
-          ;; sane default
-          (setq org-cycle-emulate-tab nil)
-
-          ;; when over a special form allow editing but when finished don't show them
-          (setq org-appear-autoemphasis t
-                org-appear-autolinks t
-                org-appear-autosubmarkers t)
-          (add-hook 'org-mode-hook 'org-appear-mode)
-
-          ;; capture from outside emacs
-
-          (defadvice org-capture-finalize
-              (after delete-capture-frame activate)
-            "Advise capture-finalize to close the frame"
-            (if (equal "capture" (frame-parameter nil 'name))
-                (delete-frame)))
-
-          (defadvice org-capture-destroy
-              (after delete-capture-frame activate)
-            "Advise capture-destroy to close the frame"
-            (if (equal "capture" (frame-parameter nil 'name))
-                (delete-frame)))
-
-          (use-package noflet
-            :ensure t )
-          (defun make-capture-frame ()
-            "Create a new frame and run org-capture."
-            (interactive)
-            (make-frame '((name . "capture")))
-            (select-frame-by-name "capture")
-            (delete-other-windows)
-            (noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
-                    (org-capture)))
-
-          ;; other functions with their keymapping
-          ;; archive shortcut
-          (defun org-archive-done-tasks ()
-            "archive all done"
-            (interactive)
-            (org-map-entries
-             (lambda ()
-               (org-archive-subtree)
-               (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
-             "/DONE" 'tree)
-            (org-map-entries
-             (lambda ()
-               (org-archive-subtree)
-               (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
-             "/KILL" 'tree))
-
-          ;; keymapping example for specific mode
-          (spacemacs/declare-prefix-for-mode 'org-mode "o" "custom")
-          (spacemacs/set-leader-keys-for-major-mode 'org-mode "oa" 'org-archive-done-tasks)
+  (setq org-capture-templates
+        '(("t" "Personal todo" entry
+           (file+headline "/home/yasser/MEGA/org/todo.org" "Tasks:")
+           "* TODO %?\n%i" :append t)
+          ("n" "Personal notes" entry
+           (file+headline "/home/yasser/MEGA/org/notes.org" "Notes:")
+           "*  %?\n%i" :append t)))
 
 
-;; sort function: sort by Todo then by propriety
-(require 'cl-lib)
-(require 'dash)
+  ;; sane default
+  (setq org-cycle-emulate-tab nil)
 
-(defun todo-to-int (todo)
-  (first (-non-nil
-          (mapcar (lambda (keywords)
-                    (let ((todo-seq
-                           (-map (lambda (x) (first (split-string  x "(")))
-                                 (rest keywords))))
-                      (cl-position-if (lambda (x) (string= x todo)) todo-seq)))
-                  org-todo-keywords))))
+  ;; when over a special form allow editing but when finished don't show them
+  (setq org-appear-autoemphasis t
+        org-appear-autolinks t
+        org-appear-autosubmarkers t)
+  (add-hook 'org-mode-hook 'org-appear-mode)
 
-(defun my/org-sort-key ()
-  (let* ((todo-max (apply #'max (mapcar #'length org-todo-keywords)))
-         (todo (org-entry-get (point) "TODO"))
-         (todo-int (if todo (todo-to-int todo) todo-max))
-         (priority (org-entry-get (point) "PRIORITY"))
-         (priority-int (if priority (string-to-char priority) org-default-priority)))
-    (format "%03d %03d" todo-int priority-int)
-    ))
+  ;; capture from outside emacs
 
-(defun my/org-sort-entries ()
-  (interactive)
-  (org-sort-entries nil ?f #'my/org-sort-key))
+  (defadvice org-capture-finalize
+      (after delete-capture-frame activate)
+    "Advise capture-finalize to close the frame"
+    (if (equal "capture" (frame-parameter nil 'name))
+        (delete-frame)))
 
-;; ;; space A to sort entries
-;; (map!
-;;  :leader
-;;  :"A" #'my/org-sort-entries)
-(spacemacs/set-leader-keys-for-major-mode 'org-mode "os" 'my/org-sort-entries)
+  (defadvice org-capture-destroy
+      (after delete-capture-frame activate)
+    "Advise capture-destroy to close the frame"
+    (if (equal "capture" (frame-parameter nil 'name))
+        (delete-frame)))
 
-;; shortcuts
+  (use-package noflet
+    :ensure t )
+  (defun make-capture-frame ()
+    "Create a new frame and run org-capture."
+    (interactive)
+    (make-frame '((name . "capture")))
+    (select-frame-by-name "capture")
+    (delete-other-windows)
+    (noflet ((switch-to-buffer-other-window (buf) (switch-to-buffer buf)))
+      (org-capture)))
 
-;; space o t go to Todo file
-(defun open-todo-file ()
-  "Open todo.org"
-  (interactive)
-  (find-file "/home/yasser/MEGA/org/todo.org"))
+  ;; other functions with their keymapping
+  ;; archive shortcut
+  (defun org-archive-done-tasks ()
+    "archive all done"
+    (interactive)
+    (org-map-entries
+     (lambda ()
+       (org-archive-subtree)
+       (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
+     "/DONE" 'tree)
+    (org-map-entries
+     (lambda ()
+       (org-archive-subtree)
+       (setq org-map-continue-from (org-element-property :begin (org-element-at-point))))
+     "/KILL" 'tree))
 
-(spacemacs/set-leader-keys "ot" 'open-todo-file)
+  ;; keymapping example for specific mode
+  (spacemacs/declare-prefix-for-mode 'org-mode "o" "custom")
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode "oa" 'org-archive-done-tasks)
+
+
+  ;; sort function: sort by Todo then by propriety
+  (require 'cl-lib)
+  (require 'dash)
+
+  (defun todo-to-int (todo)
+    (first (-non-nil
+            (mapcar (lambda (keywords)
+                      (let ((todo-seq
+                             (-map (lambda (x) (first (split-string  x "(")))
+                                   (rest keywords))))
+                        (cl-position-if (lambda (x) (string= x todo)) todo-seq)))
+                    org-todo-keywords))))
+
+  (defun my/org-sort-key ()
+    (let* ((todo-max (apply #'max (mapcar #'length org-todo-keywords)))
+           (todo (org-entry-get (point) "TODO"))
+           (todo-int (if todo (todo-to-int todo) todo-max))
+           (priority (org-entry-get (point) "PRIORITY"))
+           (priority-int (if priority (string-to-char priority) org-default-priority)))
+      (format "%03d %03d" todo-int priority-int)
+      ))
+
+  (defun my/org-sort-entries ()
+    (interactive)
+    (org-sort-entries nil ?f #'my/org-sort-key))
+
+  ;; ;; space A to sort entries
+  ;; (map!
+  ;;  :leader
+  ;;  :"A" #'my/org-sort-entries)
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode "os" 'my/org-sort-entries)
+
+  ;; shortcuts
+
+  ;; space o t go to Todo file
+  (defun open-todo-file ()
+    "Open todo.org"
+    (interactive)
+    (find-file "/home/yasser/MEGA/org/todo.org"))
+
+  (spacemacs/set-leader-keys "ot" 'open-todo-file)
 
   ;;;;;;;;;;;;;;;;;;;;; END ORG CONFGIG ;;;;;;;;;;;;;;;;;;;;;
 
@@ -744,6 +761,31 @@ before packages are loaded."
         '(("/home/yasser/MEGA/dotFiles/" . 4) ("/home/yasser/.doom.d/" . 4)))
 
 
+  ;;;;;;;;;;;;;;;;;;;;;;; KEYMAPING ;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  ;; escape to jk unordered ;;
+  (setq-default evil-escape-key-sequence "jk")
+  (setq evil-escape-unordered-key-sequence t)
+
+  ;; remove highlight when pressing enter in normal mode
+  (define-key evil-normal-state-map (kbd "RET") 'evil-ex-nohighlight)
+
+  ;; 0 to ^
+  (define-key evil-normal-state-map (kbd "0") 'evil-first-non-blank)
+
+  ;; j and k move visual lines
+  (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+  (define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+  (define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+  (define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+
+
+;;;; format with f7
+  (defun formate-whole-buffer ()
+    (interactive)
+    (save-excursion
+      (indent-region (point-min) (point-max) nil)))
+  (global-set-key [f7] 'formate-whole-buffer)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -753,18 +795,20 @@ before packages are loaded."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(evil-want-Y-yank-to-eol nil)
- '(package-selected-packages
-   '(flyspell-popup ranger xterm-color vterm terminal-here shell-pop multi-term git-gutter-fringe+ fringe-helper git-gutter+ flyspell-correct-helm flyspell-correct eshell-z eshell-prompt-extras esh-help browse-at-remote auto-dictionary vmd-mode orgit org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink org-brain mmm-mode markdown-toc htmlize helm-org-rifle gnuplot gh-md evil-org lsp-ui lsp-treemacs lsp-origami origami helm-lsp lsp-mode flycheck-pos-tip treemacs-magit smeargle magit-svn magit-section magit-gitflow magit-popup helm-gitignore helm-git-grep gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link forge markdown-mode magit ghub closql emacsql-sqlite emacsql treepy git-commit with-editor transient yasnippet-snippets helm-company helm-c-yasnippet fuzzy company-statistics company-quickhelp pos-tip company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line move-text macrostep lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump dotenv-mode dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-)
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(evil-want-Y-yank-to-eol nil)
+   '(package-selected-packages
+     '(flyspell-popup ranger xterm-color vterm terminal-here shell-pop multi-term git-gutter-fringe+ fringe-helper git-gutter+ flyspell-correct-helm flyspell-correct eshell-z eshell-prompt-extras esh-help browse-at-remote auto-dictionary vmd-mode orgit org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download org-cliplink org-brain mmm-mode markdown-toc htmlize helm-org-rifle gnuplot gh-md evil-org lsp-ui lsp-treemacs lsp-origami origami helm-lsp lsp-mode flycheck-pos-tip treemacs-magit smeargle magit-svn magit-section magit-gitflow magit-popup helm-gitignore helm-git-grep gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link forge markdown-mode magit ghub closql emacsql-sqlite emacsql treepy git-commit with-editor transient yasnippet-snippets helm-company helm-c-yasnippet fuzzy company-statistics company-quickhelp pos-tip company auto-yasnippet yasnippet ac-ispell auto-complete ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line move-text macrostep lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav editorconfig dumb-jump dotenv-mode dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   )
+  )
+
+                                        ; LocalWords:  KEYMAPING
