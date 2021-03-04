@@ -376,6 +376,7 @@ set to (echo $argv[2])
     alias svim="nvim -u ~/.SpaceVim/vimrc"
     alias tree="tree -C -a"
     alias notable="noteable.AppImage"
+    alias brave="brave-nightly"
 
 # vi mode
     fish_vi_key_bindings

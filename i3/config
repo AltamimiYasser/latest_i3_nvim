@@ -187,7 +187,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bindsym $mod+b exec firefox
+bindsym $mod+b exec brave-nightly
 bindsym $mod+n exec noteable.AppImage
 bindsym $mod+p exec nautilus
 bindsym $mod+z exec emacs
