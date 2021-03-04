@@ -637,6 +637,12 @@ before packages are loaded."
   (setq user-full-name "Yasser Tamimi"
         user-mail-address "altamimiy89@gmail.com")
 
+  ;; right line at 80 characters
+  (spacemacs/toggle-fill-column-indicator-globally)
+
+  ;; indentation guide
+  (spacemacs/toggle-indent-guide-globally-on)
+
   ;; open .spacemacs file with space o d
   (defun open-config-file ()
     "Open config.el."
