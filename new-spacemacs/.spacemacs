@@ -1,4 +1,4 @@
-;; -*- mode: emacs-lisp; lexical-binding: t -*-
+;m; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; This file is loaded by Spacemacsspacemacs/layers ()
 "Layer configuration:
 This function should only modify configuration layer settings."
@@ -51,8 +51,7 @@ This function should only modify configuration layer settings."
      emacs-lisp
      git
 
-     (helm :variables
-           helm-enable-auto-resize t)
+     helm
 
      (lsp :variables
           lsp-lens--enable t
