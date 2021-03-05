@@ -63,8 +63,7 @@ This function should only modify configuration layer settings."
      multiple-cursors
 
      (org :variables
-          org-enable-sticky-header t
-          org-enable-valign t)
+          org-enable-sticky-header t)
 
      (shell :variables
             shell-default-shell 'vterm
@@ -72,8 +71,8 @@ This function should only modify configuration layer settings."
             shell-default-position 'bottom
             shell-default-term-shell "/bin/fish")
 
-     (spell-checking :variables
-                     enable-flyspell-auto-completion t)
+     ;; (spell-checking :variables
+     ;;                 enable-flyspell-auto-completion t)
 
      syntax-checking
 
@@ -646,7 +645,7 @@ before packages are loaded."
   (defun open-config-file ()
     "Open config.el."
     (interactive)
-    (find-file "~/.spacemacs"))
+    (find-file "~/clones/latest_i3_nvim/new-spacemacs/.spacemacs"))
   (spacemacs/set-leader-keys "oe" 'open-config-file)
 
   ;; undo history
