@@ -678,7 +678,9 @@ before packages are loaded."
   ;; projectile search paths
   (setq projectile-project-search-path '("/home/yasser/MEGA/dotFiles"
                                          "/home/yasser/MEGA/Programming"
-                                         "/home/yasser/MEGA/org"))
+                                         "/home/yasser/MEGA/org"
+                                         "/home/yasser/MEGA/Programming/cs50-web"
+                                         "/home/yasser/MEGA/Programming/TheOdinProject"))
 
   ;; display battery
 
