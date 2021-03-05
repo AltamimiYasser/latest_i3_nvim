@@ -71,8 +71,9 @@ This function should only modify configuration layer settings."
             shell-default-position 'bottom
             shell-default-term-shell "/bin/fish")
 
-     ;; (spell-checking :variables
-     ;;                 enable-flyspell-auto-completion t)
+
+      (spell-checking :variables
+                      enable-flyspell-auto-completion t)
 
      syntax-checking
 
