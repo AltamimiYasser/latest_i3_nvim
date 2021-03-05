@@ -1,4 +1,4 @@
-;; -*- mode: emacs-lisp; lexical-binding: t -*-
+;m; -*- mode: emacs-lisp; lexical-binding: t -*-
 ;; This file is loaded by Spacemacsspacemacs/layers ()
 "Layer configuration:
 This function should only modify configuration layer settings."
@@ -51,8 +51,7 @@ This function should only modify configuration layer settings."
      emacs-lisp
      git
 
-     (helm :variables
-           helm-enable-auto-resize t)
+     helm
 
      (lsp :variables
           lsp-lens--enable t
@@ -64,8 +63,7 @@ This function should only modify configuration layer settings."
      multiple-cursors
 
      (org :variables
-          org-enable-sticky-header t
-          org-enable-valign t)
+          org-enable-sticky-header t)
 
      (shell :variables
             shell-default-shell 'vterm
@@ -73,8 +71,8 @@ This function should only modify configuration layer settings."
             shell-default-position 'bottom
             shell-default-term-shell "/bin/fish")
 
-     (spell-checking :variables
-                     enable-flyspell-auto-completion t)
+     ;; (spell-checking :variables
+     ;;                 enable-flyspell-auto-completion t)
 
      syntax-checking
 
@@ -649,7 +647,7 @@ before packages are loaded."
   (defun open-config-file ()
     "Open config.el."
     (interactive)
-    (find-file "~/.spacemacs"))
+    (find-file "~/clones/latest_i3_nvim/new-spacemacs/.spacemacs"))
   (spacemacs/set-leader-keys "oe" 'open-config-file)
 
   ;; undo history
@@ -680,9 +678,12 @@ before packages are loaded."
 
 
   ;; projectile search paths
-  (setq projectile-project-search-path '("/home/yasser/MEGA/dotFiles"
-                                         "/home/yasser/MEGA/Programming"
-                                         "/home/yasser/MEGA/org"))
+  (setq projectile-project-search-path '("/home/yasser/MEGA"
+                                         "/home/yasser/MEGA/dotFiles/"
+                                         "/home/yasser/MEGA/Programming/"
+                                         "/home/yasser/MEGA/org/"
+                                         "/home/yasser/MEGA/Programming/cs50-web/"
+                                         "/home/yasser/MEGA/Programming/TheOdinProject/"))
 
   ;; display battery
 
