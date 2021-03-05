@@ -146,7 +146,9 @@ This function should only modify configuration layer settings."
      (ruby :variables
            ruby-prettier-on-save t)
 
-     dash
+     (dash :variables
+           dash-docs-docset-newpath "/home/yasser/.local/share/Zeal/Zeal/docsets"
+           dash-docs-enable-debugging nil)
      themes-megapack
      dap
      debug
